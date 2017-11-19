@@ -30,13 +30,13 @@ const StreetAddressForm = ( props ) => {
 				<label htmlFor={ idPrefix + 'state' } >
 					State:
 				</label>
-				<input type="text" data-field="state" id={ idPrefix + 'state' }  value={ props.state } onChange={ handleFieldChange } />
+				<input type="text" data-field="state" id={ idPrefix + 'state' }  value={ props.state } onChange={ handleFieldChange } pattern="^[A-Z][A-Z]$" maxlength="2" />
 			</p>
 			<p>
 				<label htmlFor={ idPrefix + 'zip' } >
 					ZIP:
 				</label>
-				<input type="text" data-field="zip" id={ idPrefix + 'zip' }  value={ props.zip } onChange={ handleFieldChange } />
+				<input type="text" data-field="zip" id={ idPrefix + 'zip' }  value={ props.zip } pattern="\d\d\d\d\d" onChange={ handleFieldChange } />
 			</p>
 		</fieldset>
 	);
