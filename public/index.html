@@ -35,6 +35,9 @@
 			#customize-theme-controls {
 				width: 300px;
 			}
+			.customize-control {
+				float: none;
+			}
 			#customize-theme-controls .customize-pane-child {
 				position: static;
 			}
@@ -44,6 +47,14 @@
 			}
 			#model-preview dt {
 				font-weight: bold;
+			}
+			body {
+				overflow: auto;
+			}
+			#debugging {
+				margin-top: 3em;
+				border: dashed 1px gray;
+				padding: 1em;
 			}
 		</style>
 		<title>Demo for Customize React Street Address Control</title>
@@ -55,17 +66,15 @@
 					You need to enable JavaScript to run this app.
 				</noscript>
 				<ul id="root" class="customize-pane-child accordion-section-content accordion-section control-section control-section-default open">
-					<!-- Control gets rendered here. -->
-					<li>
-						<h2>Model Props Preview:</h2>
+					<li id="debugging">
+						<h2>Testing and Debugging</h2>
 						<dl id="model-preview"></dl>
-					</li>
-					<li>
-						<button type="button" class="button button-secondary" id="set-googleplex-address">Set address to Googleplex</button>
-					</li>
-					<li>
-						Add dismissible notifications:
+
 						<p>
+							<button type="button" class="button button-secondary" id="set-googleplex-address">Set address to Googleplex</button>
+						</p>
+						<p>
+							Add dismissible notifications:<br>
 							<button type="button" class="button button-secondary" id="add-dismissible-error">Error</button>
 							<button type="button" class="button button-secondary" id="add-dismissible-warning">Warning</button>
 							<button type="button" class="button button-secondary" id="add-dismissible-info">Info</button>
