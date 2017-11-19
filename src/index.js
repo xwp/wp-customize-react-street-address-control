@@ -53,39 +53,5 @@ const Control = wp.customize.Control.extend({
 
 });
 
-//
-// const addressValue = new wp.customize.Value( {
-// 	street: "123 Main St",
-// 	city: "Portland",
-// 	state: "OR",
-// 	zip: "97205"
-// } );
-//
-// const renderComponent = () => {
-// 	const address = addressValue.get();
-// 	const form = <StreetAddressForm
-// 		label="Address"
-// 		street={ address.street }
-// 		city={ address.city }
-// 		state={ address.state }
-// 		zip={ address.zip }
-// 		onChange={ ( props ) => {
-// 			addressValue.set( {
-// 				...addressValue.get(),
-// 				...props
-// 			} );
-// 		} }
-// 	/>;
-// 	ReactDOM.render(
-// 		form,
-// 		document.getElementById('root')
-// 	);
-// };
-//
-// renderComponent();
-// addressValue.bind( renderComponent );
-//
-// window.addressValue = addressValue;
-
 // Register control type with Customizer.
 wp.customize.controlConstructor.street_address = Control;
