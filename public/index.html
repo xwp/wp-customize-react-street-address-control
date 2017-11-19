@@ -60,18 +60,40 @@
 						<h2>Model Props Preview:</h2>
 						<dl id="model-preview"></dl>
 					</li>
+					<li>
+						<button type="button" class="button button-secondary" id="set-googleplex-address">Set address to Googleplex</button>
+					</li>
+					<li>
+						Add dismissible notifications:
+						<p>
+							<button type="button" class="button button-secondary" id="add-dismissible-error">Error</button>
+							<button type="button" class="button button-secondary" id="add-dismissible-warning">Warning</button>
+							<button type="button" class="button button-secondary" id="add-dismissible-info">Info</button>
+						</p>
+					</li>
 				</ul>
 			</div>
 		</form>
 
 		<script src="https://develop.svn.wordpress.org/trunk/src/wp-includes/js/jquery/jquery.js"></script>
 		<script src="https://develop.svn.wordpress.org/trunk/src/wp-includes/js/underscore.js"></script>
+		<script src="https://develop.svn.wordpress.org/trunk/src/wp-includes/js/wp-util.js"></script>
 		<script src="https://develop.svn.wordpress.org/trunk/src/wp-includes/js/customize-base.js"></script>
 		<script src="https://develop.svn.wordpress.org/trunk/src/wp-admin/js/customize-controls.js"></script>
+		<!--<script src="http://src.wordpress-develop.dev/wp-admin/js/customize-controls.js?ver=5.0-alpha-42125-src"></script>-->
+
+		<script type="text/html" id="tmpl-customize-notification">
+			<li class="notice notice-{{ data.type || 'info' }} {{ data.alt ? 'notice-alt' : '' }} {{ data.dismissible ? 'is-dismissible' : '' }} {{ data.containerClasses || '' }}" data-code="{{ data.code }}" data-type="{{ data.type }}">
+				<div class="notification-message">{{{ data.message || data.code }}}</div>
+				<# if ( data.dismissible ) { #>
+					<button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php _e( 'Dismiss' ); ?></span></button>
+				<# } #>
+			</li>
+		</script>
 
 		<script>
 			jQuery( function( $ ) {
-				var control, model, modelPreview
+				var control, model, modelPreview;
 
 				model = new wp.customize.Value( {
 					street: "123 Main St",
@@ -103,11 +125,14 @@
 				$( '#root' ).prepend( control.container );
 				control.embed();
 
+				// Expose in global namespace for debugging.
+				window.testControl = control;
+
+				// Preview value managed by control.
 				modelPreview = $( '#model-preview' );
 				function updatePreview() {
 					modelPreview.empty();
 					_.each( model.get(), function( value, key ) {
-						var dd;
 						modelPreview.append( $( '<dt></dt>', {
 							text: key
 						} ) );
@@ -118,6 +143,29 @@
 				}
 				updatePreview();
 				model.bind( updatePreview );
+
+				// Set up button for resetting model to a different address.
+				document.getElementById( 'set-googleplex-address' ).addEventListener( 'click', function() {
+					model.set( {
+						street: '1600 Amphitheatre Pkwy',
+						city: 'Mountain View',
+						state: 'CA',
+						zip: '94043'
+					} );
+				} );
+
+				// Add button for adding notifications.
+				var count = 0;
+				_.each( [ 'error', 'warning', 'info' ], function( type ) {
+					document.getElementById( 'add-dismissible-' + type ).addEventListener( 'click', function() {
+						count++;
+						control.notifications.add( new wp.customize.Notification( 'notification_' + String( count ), {
+							type: type,
+							message: 'Notification #' + String( count ) + ' (' + type + ')',
+							dismissible: true
+						} ) );
+					} );
+				} );
 			} );
 		</script>
 		<!--

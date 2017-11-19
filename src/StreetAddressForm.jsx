@@ -13,6 +13,7 @@ const StreetAddressForm = ( props ) => {
 	return (
 		<fieldset>
 			<legend className="customize-control-title">{ props.label }</legend>
+			<div className="customize-control-notifications-container" ref={ props.setNotificationContainer }></div>
 			<p>
 				<label htmlFor={ idPrefix + 'street' }>
 					Street:
