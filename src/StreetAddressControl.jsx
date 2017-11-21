@@ -22,9 +22,24 @@ const StreetAddressControl = wp.customize.Control.extend({
 		const control = this;
 
 		// Bind for the sake of passing as prop to React component.
+		control.updateSetting = control.updateSetting.bind( control );
 		control.setNotificationContainer = control.setNotificationContainer.bind( control );
 
 		wp.customize.Control.prototype.initialize.call( control, id, params );
+	},
+
+	/**
+	 * Update setting with new props.
+	 *
+	 * @param {object} props - New props to set in the setting (model).
+	 * @returns {void}
+	 */
+	updateSetting: function updateSetting( props ) {
+		const control = this;
+		control.setting.set( {
+			...control.setting.get(),
+			...props
+		} );
 	},
 
 	/**
@@ -33,6 +48,7 @@ const StreetAddressControl = wp.customize.Control.extend({
 	 * This is called when the React component is mounted.
 	 *
 	 * @param {Element} element - Notification container.
+	 * @returns {void}
 	 */
 	setNotificationContainer: function setNotificationContainer( element ) {
 		const control = this;
@@ -49,18 +65,11 @@ const StreetAddressControl = wp.customize.Control.extend({
 		const control = this;
 		const value = control.setting.get();
 
-		const onChange = ( props ) => {
-			control.setting.set( {
-				...control.setting.get(),
-				...props
-			} );
-		};
-
 		const form = <StreetAddressForm
 			label={ control.params.label }
 			{ ...value }
 			setNotificationContainer={ control.setNotificationContainer }
-			onChange={ onChange }
+			onChange={ control.updateSetting }
 		/>;
 		ReactDOM.render(
 			form,
