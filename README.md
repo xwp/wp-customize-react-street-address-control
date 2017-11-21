@@ -7,7 +7,7 @@ This is a WordPress plugin which you can activate to see the React-driven Custom
 
 You may also run `npm run start` which will start a local development server that serves out an HTML page with the Customizer control running standalone for testing.
 
-See [gh-pages demo](https://xwp.github.io/wp-customize-react-street-address-control/build/).
+See [gh-pages demo](https://xwp.github.io/wp-customize-react-street-address-control/).
 
 What follows is the the original `create-react-app` documentation.
 
