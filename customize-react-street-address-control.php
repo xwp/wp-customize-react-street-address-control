@@ -75,10 +75,10 @@ add_action( 'customize_register', function( \WP_Customize_Manager $wp_customize 
 	$setting = $wp_customize->add_setting( 'business_address', array(
 		'transport' => 'postMessage',
 		'default' => array(
-			'street' => '',
-			'city' => '',
-			'state' => '',
-			'zip' => '',
+			'street' => '123 Main St',
+			'city' => 'Portland',
+			'state' => 'OR',
+			'zip' => '97205',
 		),
 		'type' => 'option',
 		'sanitize_callback' => function( $value ) {
