@@ -5,6 +5,17 @@ A demonstration for how to create a Customizer control using a React component a
 
 This is a WordPress plugin which you can activate to see the React-driven Customizer control in action. Upon activation, a new “business address” control will appear in the Site Identity section. Supplying a value will cause a sticky footer in the preview to populate with the business's address. Note that you will have to run `npm install && npm run build` prior to activating the plugin.
 
+The street address control manages a setting value that is a JSON object which looks like:
+
+```json
+{
+	"street": "123 Main St",
+	"city": "Portland",
+	"state": "OR",
+	"zip": "97205"
+}
+```
+
 You may also run `npm run start` which will start a local development server that serves out an HTML page with the Customizer control running standalone for testing.
 
 See [gh-pages demo](https://xwp.github.io/wp-customize-react-street-address-control/).
