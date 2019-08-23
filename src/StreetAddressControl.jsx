@@ -1,6 +1,4 @@
-/* global wp, jQuery */
-import React from 'react';
-import ReactDOM from 'react-dom';
+/* global wp, jQuery, React, ReactDOM */
 import StreetAddressForm from './StreetAddressForm';
 
 /**

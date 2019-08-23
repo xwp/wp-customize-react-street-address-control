@@ -21,7 +21,7 @@ add_action( 'customize_controls_enqueue_scripts', function() {
 
 	$handle = 'customize-react-street-address-control';
 	$src = plugin_dir_url( __FILE__ ) . 'build/static/js/' . basename( array_shift( $build_js ) );
-	$deps = array( 'customize-controls' );
+	$deps = array( 'customize-controls', 'wp-element' );
 	wp_enqueue_script( $handle, $src, $deps );
 } );
 
