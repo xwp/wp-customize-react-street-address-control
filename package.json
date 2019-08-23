@@ -2,11 +2,7 @@
   "name": "customize-react-street-address-control",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
-    "react-scripts": "1.0.17"
-  },
+  "dependencies": {},
   "homepage": "https://xwp.github.io/wp-customize-react-street-address-control/",
   "scripts": {
     "start": "react-scripts start",
