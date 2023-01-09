@@ -1,5 +1,4 @@
-/* globals _, console */
-import React from 'react';
+/* globals _, console, React */
 
 const StreetAddressForm = ( props ) => {
 	const idPrefix = _.uniqueId();
